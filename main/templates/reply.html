@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reply Message</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+<div class="navbar">
+    <a href="/messages/">⬅ Back to Messages</a>
+</div>
+
+<div class="container">
+    <h2>Reply to {{ msg.name }}</h2>
+
+    <p><strong>Email:</strong> {{ msg.email }}</p>
+    <p><strong>Message:</strong> {{ msg.message }}</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label>Your Reply</label>
+        <textarea name="reply" required></textarea>
+        <button type="submit">Send Reply</button>
+    </form>
+</div>
+
+</body>
+</html>

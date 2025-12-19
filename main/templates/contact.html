@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <a href="/">Home</a>
+    <a href="/about/">About</a>
+    <a href="/contact/">Contact</a>
+</div>
+
+<!-- CONTACT FORM -->
+<div class="container">
+    <h1>Contact Us</h1>
+
+    <form class="contact-form" method="POST">
+        {% csrf_token %}
+
+        <label>Name</label>
+        <input type="text" name="name" placeholder="Enter your name" required>
+
+        <label>Mobile</label>
+        <input type="tel"
+               name="mobile"
+               placeholder="Enter mobile number"
+               pattern="[0-9]{11}"
+               maxlength="11"
+               required>
+
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Enter your email" required>
+
+        <label>Message</label>
+        <textarea name="message" placeholder="Write your message" required></textarea>
+
+        <button type="submit">Send Message</button>
+    </form>
+
+    {% if success %}
+        <p style="color: green; margin-top: 15px; font-weight: bold;">
+            Message sent successfully ✅
+        </p>
+    {% endif %}
+</div>
+
+</body>
+</html>
